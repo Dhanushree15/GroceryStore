@@ -8,9 +8,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  
   <title>Category-form</title>
-  
   <c:url value="/resources/images/" var="img"/>
  <c:url value="/resources/css/" var="css"/>
  <c:url value="/resources/js/" var="js"/>
@@ -19,19 +17,8 @@
   <link rel="stylesheet" href="${css}/style2.css">
 </head>
 
-<nav class="navbar navbar-default" style="background-color:#1E90FF">
-  <div class="container-fluid">
-    <div class="navbar-header" style="padding:1em">
-      <a class="navbar-brand"></a>
-    
-    <ul class="nav navbar-nav">
-      <li class="active1"><a style="color:white" "align:center">Grocery Offer Zone Top Deals & Discounts</a>
-    </ul>
-	</div>
-  </div>
-</nav>
-
 <body>
+<%@ include file="header.jsp" %>
   <div class="overlay">
   ${msg1}
   <c:url value="/addCategory" var="cat"/>

@@ -1,5 +1,7 @@
 package com.niit.grocerystore.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -28,6 +30,11 @@ public class Shipping {
 	 @ManyToOne
 		@JoinColumn(name="userId")
 		private User user;
+	 
+	 public Shipping()
+		{
+			this.shipId="SHIP"+UUID.randomUUID().toString().substring(30).toUpperCase();
+		}
 	 
 	public User getUser() {
 		return user;

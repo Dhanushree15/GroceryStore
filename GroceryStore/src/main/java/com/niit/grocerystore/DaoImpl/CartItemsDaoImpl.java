@@ -26,14 +26,14 @@ public class CartItemsDaoImpl implements CartItemsDao {
 		this.sessionFactory=sessionFactory;
 	}
 
-	@Override
+	
 	public boolean saveorupdate(CartItems cartItems) {
 		sessionFactory.getCurrentSession().saveOrUpdate(cartItems);
 		return true;
 	}
 
 
-	@Override
+	
 	public CartItems getCartItems(String ctItemsId) {
 		String s="from CartItems where ctItemsId='"+ctItemsId+"'";
 		Query q= sessionFactory.getCurrentSession().createQuery(s);
@@ -50,9 +50,9 @@ public class CartItemsDaoImpl implements CartItemsDao {
 		}
 	}
 	
-	@Override
+	
 	public List<CartItems> getlist(String ctId){
-		String s=" from CartItems where ctItemsId='"+ ctId +"'";
+		String s="from CartItems where ctId='"+ ctId +"'";
 		Query q1=sessionFactory.getCurrentSession().createQuery(s);
 		List<CartItems> lctItems=(List<CartItems>)q1.list();
 		if(lctItems==null||lctItems.isEmpty())
@@ -62,19 +62,18 @@ public class CartItemsDaoImpl implements CartItemsDao {
 		}
 		else
 		{
-		  return list();	
+		  return lctItems;	
 		}
 	}
 
-	@Override
 	public List<CartItems> list() {
-		List<CartItems> cartsitems=(List<CartItems>)sessionFactory.getCurrentSession().createCriteria(CartItems.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-		return cartsitems;
+		List<CartItems> cartitems=(List<CartItems>)sessionFactory.getCurrentSession().createCriteria(CartItems.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		return cartitems;
 	}
 
-	@Override
+	
 	public CartItems getlistall(String ctItemsId,String productId) {
-		String s="from CartItems where ctItemsId='"+ctItemsId+"'and productId='"+productId+"'";
+		String s="from CartItems where ctId='"+ctItemsId+"'and productId='"+productId+"'";
 		Query q= sessionFactory.getCurrentSession().createQuery(s);
 		List<CartItems> lctItems= (List<CartItems>)q.list();
 		if(lctItems==null||lctItems.isEmpty())
@@ -89,7 +88,7 @@ public class CartItemsDaoImpl implements CartItemsDao {
 		}
 	}
 
-	@Override
+
 	public List<CartItems> getlistbyproductId(String productId){
 		String c1="from CartItems where productId='"+productId+"'";
 		Query q1=sessionFactory.getCurrentSession().createQuery(c1);
@@ -104,7 +103,7 @@ public class CartItemsDaoImpl implements CartItemsDao {
 		}
 	}
 
-	@Override
+	
 	public boolean delete(String ctItemsId) {
 		CartItems c=new CartItems();
 		c.setCtItemsId(ctItemsId);

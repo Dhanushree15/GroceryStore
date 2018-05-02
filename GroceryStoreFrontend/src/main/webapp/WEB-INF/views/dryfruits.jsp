@@ -21,6 +21,7 @@ float:left;
 }
 </style>
 <body>
+<%@ include file="header.jsp" %>
 <div class="img">
 <div class="container">
   <h3>Almond</h3>  

@@ -73,32 +73,29 @@ form {
 }
 </style>
 
-<body>
-<br>
-<br>
-<br>
 
+<body>
+<%@ include file="header.jsp" %>
+<br>
 <div class="img">
   <c:url value="/singlepage" var="single"/>
 <form:form action="${single}" method="post" commandName="singlepage">  
 <div class="container">
-  <h4><b>BabyCare</b></h4>
+  <h4>BabyCare</h4>
  <img src="${img}/johnsons1.jpeg" class="img-rounded" alt="johnsons" width="250px">
-</div> 
- 
-<div>
   <button type="submit2" class="btn1" >Add to Cart</button>
 
   <button type="submit2" class="btn2" >Buy</button>
 </div>
 </form:form>
+</div>
 
-
+<div>
 <form>
 <fieldset>
 <br>
 <br>
-<legend><b>BabyCare</b></legend>
+<legend><b><h4>BabyCare</h4></b></legend>
 
  <p>Keep your baby happy, healthy and smelling baby fresh with an assortment
  of mum-trusted products from Johnsons.</p> 

@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Product-form</title>
-  
+   
   <c:url value="/resources/images/" var="img"/>
   <c:url value="/resources/css/" var="css"/>
   <c:url value="/resources/js/" var="js"/>
@@ -17,23 +17,12 @@
   <link rel="stylesheet" href="${css}/style2.css">
 </head>
 
-<nav class="navbar navbar-default" style="background-color:#1E90FF" "padding:10em;">
-  <div class="container-fluid">
-    <div class="navbar-header" style="padding:1em">
-      <a class="navbar-brand"></a>
-    
-    <ul class="nav navbar-nav">
-      <li class="active1"><a style="color:white" "align:center">Grocery Offer Zone Top Deals & Discounts</a>
-    </ul>
-	</div>
-  </div>
-</nav>
-
 <body>
+<%@ include file="header.jsp" %>
   <div class="overlay">
   ${msg3}
   <c:url value="/addProduct" var="prod"/>
-<form:form action="${prod}" method="post" commandName="product" enctype="multipart/form-desk" style="margin-left:450px;"> 
+<form:form action="${prod}" method="post" commandName="product" enctype="multipart/form-data" style="margin-left:450px;"> 
    <div class="con">
    <header class="head-form">
      <h2>PRODUCT FORM</h2>   
@@ -50,6 +39,22 @@
     <form:input class="form-input" type="text" placeholder="Price"  path="productPrice" required="required"/>
  <br>
     <form:input class="form-input" type="number" placeholder="Quantity" path="productQty" required="required"/>
+    <br><br>
+<%--     <form:input type="text" placeholder="Product seller"/> --%>
+    Supplier Name:
+    <form:select path="supplier.supplierId">
+    <c1:forEach items="${suppliers}" var="sup">
+    <option value="${sup.getSupplierId()}" label="${sup.getSupplierName()}">${sup.getSupplierName()}</option>
+    </c1:forEach>
+    </form:select><br><br>
+    
+<%--     <form:input type="text" placeholder="Product Category" path=" "/> --%>
+    Category Name:
+    <form:select path="category.catId">
+    <c1:forEach items="${categories}" var="cat">
+    <option value="${cat.getCatId()}" label="${cat.getCatName()}">${cat.getCatName()}</option>
+    </c1:forEach>
+    </form:select>
     <br>
    <form:input path="pimg" type="file" name="image" value="Upload File"/>    
     <button class="btn submits sign-up"> Submit </button>
@@ -68,23 +73,27 @@
 <th>ProductDesc</th>
 <th>ProductPrice</th>
 <th>ProductQuantity</th>
+<th>Category</th>
+<th>Supplier</th>
 <th>Actions</th>
 </tr>
 
 <c1:forEach items="${products}" var="prod">
 <tr>
 <td>
-<img src="<c:url value="/resources/images/${prod.getproductId()}.jpg"/>">
+<img width="250px" height="250px" src="<c:url value="/resources/images/${prod.getProductId()}.jpg"/>">
 </td>
 <td>${prod.getProductId()}</td>
 <td>${prod.getProductName()}</td>
 <td>${prod.getProductDesc()}</td>
 <td>${prod.getProductPrice()}</td>
 <td>${prod.getProductQty()}</td>
+<td>${prod.getCategory().getCatName()}</td>
+<td>${prod.getSupplier().getSupplierName()}</td>
 
 <td>
 <a href="<c:url value='/editProduct/${prod.getProductId()}'/>">EditProduct/</a>
-<a href="<c:url value='/deleteProduct/${prod.getProductId()}'/>">EditProduct</a>
+<a href="<c:url value='/deleteProduct/${prod.getProductId()}'/>">DeleteProduct</a>
 </td>
 </tr>
 </c1:forEach>

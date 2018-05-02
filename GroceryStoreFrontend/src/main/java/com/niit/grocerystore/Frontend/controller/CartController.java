@@ -1,5 +1,4 @@
 package com.niit.grocerystore.Frontend.controller;
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -31,25 +30,21 @@ public class CartController {
 	
 	@Autowired
 	Product product;
-	
 	@Autowired
 	ProductDao productDao;
 	
 	@Autowired
 	User user;
-	
 	@Autowired
 	UserDao userDao;
 	
 	@Autowired
 	Cart cart;
-	
 	@Autowired
 	CartDao cartDao;
 	
 	@Autowired
 	CartItems cartItems;
-	
 	@Autowired
 	CartItemsDao cartItemsDao;
 	
@@ -58,7 +53,6 @@ public class CartController {
 	
 	@Autowired
 	Category category;
-	
 	@Autowired
 	CategoryDao categoryDao;
 
@@ -71,7 +65,7 @@ public class CartController {
 		{
 		    String currusername=authentication.getName();
 			User u=userDao.getEmail(currusername);
-			System.out.println(u.getUserEmailid());
+		//	System.out.println(u.getUserEmailid());
 			if(user==null)
 			{
 				return new ModelAndView("redirect:/");
@@ -86,7 +80,7 @@ public class CartController {
 				cartItems.setCtItemsPrice(product1.getProductPrice());
 				cartItemsDao.saveorupdate(cartItems);
 				cart.setCtGrandtotal(cart.getCtGrandtotal()+product1.getProductPrice());
-				cart.setCtTotalitem(cart.getCtTotalitem()+1);
+				cart.setCtTotalitem(cart.getCtTotalitem() + 1);
 				cartDao.saveorupdate(cart);
 			    session.setAttribute("items", cart.getCtTotalitem());
 				session.setAttribute("gd", cart.getCtGrandtotal());
@@ -103,6 +97,7 @@ public class CartController {
 	@RequestMapping(value="/viewcart")
 	public String viewcart(Model model,HttpSession session)
 	{
+		System.out.println(1223);
 		Authentication authentication= SecurityContextHolder.getContext().getAuthentication();	
 		if(!(authentication instanceof AnonymousAuthenticationToken))
 		{
@@ -110,26 +105,23 @@ public class CartController {
 			User u=userDao.getEmail(currusername);
 			Cart c=u.getCart();
 			List<CartItems> cartItems=cartItemsDao.getlist(u.getCart().getCtId());
-			if(cartItems==null)
+			if(cartItems==null||cartItems.isEmpty())
 			{
 				 session.setAttribute("items", 0);
 				 model.addAttribute("gtotal", 0.0);
 				 model.addAttribute("msg", "no items is added to cart");
-				 return "home";
+				 return "checkout";
 			}
 			 model.addAttribute("cartItem", cartItems);
 			 model.addAttribute("grandtotal", c.getCtGrandtotal());
 			 session.setAttribute("items", c.getCtTotalitem());
-			 session.setAttribute("items", c.getCtTotalitem());
-			 session.setAttribute("ctid", c.getCtId());
-			 List<Category> categories=categoryDao.list();
-			 model.addAttribute("lcat", categories);
-			 return "viewcart";
+			 session.setAttribute("ctid", c.getCtId());	 
+			 return "checkout";
 	   }
-		else
-		{ 
-			return "redirect:/viewcart";
-		}	
+	   else
+	   { 
+		 return "redirect:/viewcart";
+	   }	
 	}
 	
 	@RequestMapping(value="/remove/{ctItemsId}")
@@ -140,8 +132,9 @@ public class CartController {
 		Cart c=cartItems.getCart();
 		c.setCtGrandtotal(c.getCtGrandtotal()-cartItems.getCtItemsPrice());
 		c.setCtTotalitem(c.getCtTotalitem()-1);
-		cartDao.saveorupdate(cart);
+		cartDao.saveorupdate(c);
 		cartItemsDao.delete(cartItems.getCtItemsId());
+		session.setAttribute("items", c.getCtTotalitem());
 		return obj;  
 	}
 	

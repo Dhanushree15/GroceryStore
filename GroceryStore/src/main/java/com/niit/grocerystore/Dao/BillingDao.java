@@ -9,7 +9,7 @@ public interface BillingDao {
 
 	public boolean saveorupdate(Billing billing);
 	public boolean delete(Billing billing);
-	public Billing getBilling(String billId);
+	public Billing getBilling(String userId);
 	public List<Billing> list();
 
 }

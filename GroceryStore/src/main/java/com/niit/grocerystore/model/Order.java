@@ -1,7 +1,9 @@
 package com.niit.grocerystore.model;
 
 import java.util.List;
+import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -25,7 +27,7 @@ public class Order {
 	@OneToMany(mappedBy="order")
 	private List<OrderItems> orderItems;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="payId")
 	private Pay pay;
 	
@@ -33,11 +35,11 @@ public class Order {
 	@JoinColumn(name="billId")
 	private Billing billing;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="shipId")
 	private Shipping shipping;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="userId")
 	private User user;
 
@@ -50,6 +52,11 @@ public class Order {
 		this.user = user;
 	}
 
+	public Order()
+	{
+		this.ordId="ORD"+UUID.randomUUID().toString().substring(30).toUpperCase();
+	}
+	
 	public Shipping getShipping() {
 		return shipping;
 	}

@@ -38,6 +38,8 @@ public class UserDaoImpl implements UserDao {
 		user.getBilling().setBillPhnno(user.getUserPhnno());
 		user.getBilling().setBillEmailid(user.getUserEmailid());
 		user.getBilling().setBillCity(user.getUserAddress());
+		user.getBilling().setBillHouseno(user.getUserHouseno());
+	    user.getBilling().setBillPincode(user.getUserPincode());
 		sessionFactory.getCurrentSession().saveOrUpdate(auth);
 		sessionFactory.getCurrentSession().saveOrUpdate(billing);
 		sessionFactory.getCurrentSession().saveOrUpdate(user.getBilling());
@@ -90,7 +92,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Transactional
 	public User getUseremail(String userEmailid) {
-		String q1="from User where umail='"+userEmailid+"'";
+		String q1="from User where userEmailid='"+userEmailid+"'";
 		Query w=sessionFactory.getCurrentSession().createQuery(q1);
 		@SuppressWarnings("unchecked")
 		List<User> list=(List<User>) w.list();
@@ -103,7 +105,7 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public User getEmail(String currusername) {
-		String u1="from User where email='"+currusername+"'";
+		String u1="from User where userEmailid='"+currusername+"'";
 		Query q1=sessionFactory.getCurrentSession().createQuery(u1);
 		List<User> list=(List<User>) q1.list();
 		if(list==null || list.isEmpty())

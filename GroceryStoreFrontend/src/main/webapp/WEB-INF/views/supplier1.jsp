@@ -17,19 +17,8 @@
  <link rel="stylesheet" href="${css}/style2.css">
 </head>
 
-<nav class="navbar navbar-default" style="background-color:#1E90FF" "padding:10em;">
-  <div class="container-fluid">
-    <div class="navbar-header" style="padding:1em">
-      <a class="navbar-brand"></a>
-    
-    <ul class="nav navbar-nav">
-      <li class="active1"><a style="color:white" "align:center">Grocery Offer Zone Top Deals & Discounts</a>
-    </ul>
-	</div>
-  </div>
-</nav>
-
 <body>
+<%@ include file="header.jsp" %>
   <div class="overlay">
   ${msg5}
   <c:url value="/addSupplier" var="supplier"/>

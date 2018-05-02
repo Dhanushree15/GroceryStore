@@ -1,19 +1,35 @@
 package com.niit.grocerystore.Frontend.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.niit.grocerystore.Dao.ProductDao;
+import com.niit.grocerystore.model.Product;
 import com.niit.grocerystore.model.User;
 
 @Controller
 public class HomeController {
 	
+	
+	@Autowired
+	Product product;
+	
+	@Autowired
+	ProductDao productDao;
+	
+	
 	@RequestMapping("/")
 	public String home(@ModelAttribute("user")User user, Model model)
 	{
 		model.addAttribute("user", user);
+		List<Product> products=productDao.list();
+		model.addAttribute("products", products);
+			
 		return "demo";
 	}
 	
@@ -53,4 +69,30 @@ public class HomeController {
 	{
 		return "Singlepage";
 	}
+	
+	@RequestMapping("/aboutus")
+	public String aboutus()
+	{
+		return "aboutus";
+	}
+	
+
+	@RequestMapping("/thankyou")
+	public String thankyou()
+	{
+		return "thankyou";
+	}
+	
+	@RequestMapping("/products")
+	public String products()
+	{
+		return "products";
+	}
+	
+	@RequestMapping("/contact")
+	public String contact()
+	{
+		return "contact";
+	}
+	
 }

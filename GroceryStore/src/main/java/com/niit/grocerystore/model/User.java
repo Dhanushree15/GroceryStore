@@ -24,7 +24,26 @@ public class User {
 	private String userPhnno;
 	private String userPassword;
 	private String userEmailid;
+	private String userPincode;
+	private String userHouseno;
 	private String role="ROLE_USER";
+	
+	public String getUserPincode() {
+		return userPincode;
+	}
+
+	public void setUserPincode(String userPincode) {
+		this.userPincode = userPincode;
+	}
+
+	public String getUserHouseno() {
+		return userHouseno;
+	}
+
+	public void setUserHouseno(String userHouseno) {
+		this.userHouseno = userHouseno;
+	}
+
 	
 	@OneToOne
 	@JoinColumn(name="billId")

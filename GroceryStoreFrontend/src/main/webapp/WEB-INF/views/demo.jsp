@@ -185,35 +185,34 @@ padding:10px;
 
 
 <div class="topnav">
-  <a class="active" href="#home"><span class="glyphicon glyphicon-home"><</span>Home</a>
-  <a class="active" href="#news"><i class="glyphicon glyphicon-pencil"></i>News</a>
-  <a class="active" href="#contact"><span class="glyphicon glyphicon-phone"></span>Contact</a>
-  <a class="active" href="#about"><span class="glyphicon glyphicon-list"></span>About</a>
+  <a class="active" href="<c:url value='/'/>"><span class="glyphicon glyphicon-home"></span>Home</a>
+  <a class="active" href="<c:url value='/contact'/>"> <span class="glyphicon glyphicon-phone"></span>Contact</a>
+  <a class="active" href="<c:url value='/aboutus'/>"> <span class="glyphicon glyphicon-list"></span>About</a>
+  <a class="active" href="<c:url value='/viewcart'/>" style="float:right"><span class="glyphicon glyphicon-shopping-cart">${items}</span></a>
   <c1:if test="${pageContext.request.userPrincipal.name!=null}">
+  Welcome ${pageContext.request.userPrincipal.name}
   <a class="active" href="<c:url value='/j_spring_security_logout'/>" style="float:right"><span class="glyphicon glyphicon-log-out"></span>LogOut</a>
   </c1:if>
   <c1:if test="${pageContext.request.userPrincipal.name==null}">
   <a class="active" href="#"  data-toggle="modal" data-target="#myModal" style="float:right"><span class="glyphicon glyphicon-edit"></span>Signup</a>
   <a class="active" href="<c:url value='/login'/>" data-toggle="modal" data-target="#myModal1" style="float:right"><span class="glyphicon glyphicon-check"></span>Login</a>
   </c1:if>
-  <a class="active" href="#products">Products</a>
-</div>
-
- 
+  <a class="active" href="<c:url value='/products'/>">Products</a>
 <ul class="nav navbar-nav">
   <div class="dropdown">
   <c1:if test="${pageContext.request.userPrincipal!=null}">
   <security:authorize access="hasRole('ROLE_ADMIN')">
     <a class="active" href="">Admin</a>
   <div class="dropdown-content">
-    <li><a href="<c:url value='/category'/>">Add Category</a></li>	
-    <li><a href="<c:url value='/supplier'/>">Add Supplier</a></li>
-    <li><a href="<c:url value='/product'/>">Add Product</a></li>
+    <a href="<c:url value='/category'/>">Add Category</a>
+    <a href="<c:url value='/supplier'/>">Add Supplier</a>
+    <a href="<c:url value='/product'/>">Add Product</a>
   </div>
   </security:authorize>
 </c1:if>
 </div>
 </ul>
+</div>
 
 <c1:if test= "${pageContext.request.userPrincipal.name==null}">		
 		<!-- Modal -->
@@ -234,9 +233,13 @@ padding:10px;
  <br>
 	<form:input class="form-input" type="password" placeholder="Password" path="userPassword" required="required"/>
  <br>
+    <form:input class="form-input" type="text" placeholder="Houseno" path="userHouseno" required="required"/>
+ <br>
     <form:input class="form-input" type="text" placeholder="Address" path="userAddress" required="required"/>
  <br>
-    <form:input class="form-input" type="text" placeholder="Phone Number" path="userPhnno" required="required"/>
+    <form:input class="form-input" type="text" placeholder="Pincode" path="userPincode" required="required" pattern="[0-9]{6}" />
+ <br>
+    <form:input class="form-input" type="text" placeholder="Phone Number" path="userPhnno" required="required" pattern="[789][0-9]{9}"/>
  <br>
     <form:input class="form-input" type="text" placeholder="E-mail ID" path="userEmailid" required="required"/>
  <br>
@@ -289,7 +292,7 @@ padding:10px;
     </ol>
 <div class="carousel-inner">
    <div class="item active">
-        <img src="${img}/grocery1.jpeg" alt="Los Angles" width="100%";>
+        <img src="${img}/grocery1.jpeg" alt="Los Angles" width="100%">
         <div class="carousel-caption">   
         </div>
    </div>
@@ -318,52 +321,30 @@ padding:10px;
 
 
 <div class="container-fluid" style="margin-left:0px; margin-top:0px;">
-<div class="gallery" >
-     <img src="${img}/almond.jpeg" class="img-rounded" alt="almond">
-<div class="desc">
- <button type="submit1" class="btn1"><a class="active" href="dryfruits.html"><i class="glyphicon glyphicon-shopping-cart"></i></button>
-  <button type="submit1" class="btn2"><i class="glyphicon glyphicon-folder-open"></i></button>
-</div></div>
 
-<div class="gallery">
-    <img src="${img}/baby-products.jpeg" class="img-rounded" alt="baby">
-<div class="desc"> 
- <button type="submit2" class="btn1" ><i class="glyphicon glyphicon-shopping-cart"></i></button>
-  <button type="submit2" class="btn2"><i class="glyphicon glyphicon-folder-open"></i></button></div>
-</div>
-
-<div class="gallery">
-    <img src="${img}/gifthamper.jpeg" class="img-rounded" alt="hamper" width="200px" height="200px">
-<div class="desc">
-<button type="submit2" class="btn1" ><i class="glyphicon glyphicon-shopping-cart"></i></button>
-  <button type="submit2" class="btn2"><i class="glyphicon glyphicon-folder-open"></i></button>
-</div></div>
-  
-<div class="gallery">
-    <img src="${img}/oil.jpeg" class="img-rounded" alt="oil">
-<div class="desc">
-<button type="submit2" class="btn1" ><i class="glyphicon glyphicon-shopping-cart"></i></button>
-  <button type="submit2" class="btn2"><i class="glyphicon glyphicon-folder-open"></i></button>
-</div></div>
-  
-<div class="gallery">
-    <img src="${img}/softdrinks.jpeg" class="img-rounded" alt="drinks">
-<div class="desc">
-<button type="submit2" class="btn1" ><i class="glyphicon glyphicon-shopping-cart"></i></button>
-  <button type="submit2" class="btn2"><i class="glyphicon glyphicon-folder-open"></i></button>
-</div></div>
-  
-<div class="gallery">
-    <img src="${img}/snacks.jpeg" class="img-rounded" alt="snack">
-<div class="desc">
-<button type="submit2" class="btn1" ><i class="glyphicon glyphicon-shopping-cart"></i></button>
-  <button type="submit2" class="btn2"><i class="glyphicon glyphicon-folder-open"></i></button>
-</div></div>
-</div>
+ <c1:forEach items="${products}" var="prod"> 
+ <div class="gallery" > 
+      <img src="${img}/${prod.getProductId()}.jpg" class="img-rounded" alt="almond"> 
+ <div class="desc"> 
+  <a href="<c:url value='/addtocart/${prod.getProductId()}'/>"><button type="submit1" class="btn1"><i class="glyphicon glyphicon-shopping-cart"></i></button></a> 
+   <button type="submit1" class="btn2"><i class="glyphicon glyphicon-folder-open"></i></button> 
+ </div></div> 
+ </c1:forEach> 
+ </div>
+ 
+<br>
+<%-- <c1:forEach items="${products}" var="prod">  --%>
+<!-- <div class="gallery" > -->
+<%--      <img src="${img}/${prod.getProductId()}.jpeg" class="img-rounded" alt="almond"> --%>
+<!-- <div class="desc"> -->
+<%--    <a href="<c:url value='/addtocart/${prod.getProductId()}'/>"><button type="submit1" class="btn1"><i class="glyphicon glyphicon-shopping-cart"></i></button></a> --%>
+<!--   <button type="submit1" class="btn2"><i class="glyphicon glyphicon-folder-open"></i></button> -->
+<!-- </div></div> -->
+<%-- </c1:forEach> --%>
 
 
 <div class="footer-top">
-	<div class="container-fluid">
+	<div class="container">
 		
 		<h3>Get your Groceries delivered from local stores</h3>
 		<p>Free Delivery on your first order!</p>

@@ -19,8 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
 
-	
-
 	@Id
 	private String productId;
 	private String productName;
@@ -48,6 +46,10 @@ public class Product {
 	@JoinColumn(name="supplierId")
 	private Supplier supplier;
 
+	public Product()
+	{
+		this.productId="PRO"+UUID.randomUUID().toString().substring(30).toUpperCase();
+	}
 	
 	public Category getCategory() {
 		return category;
@@ -65,10 +67,7 @@ public class Product {
 		this.supplier = supplier;
 	}
 
-	public Product()
-	{
-		this.productId="PRO"+UUID.randomUUID().toString().substring(30).toUpperCase();
-	}
+	
 
 	public String getProductId() {
 		return productId;

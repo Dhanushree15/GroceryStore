@@ -7,31 +7,21 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
+  
+  <c:url value="/resources/images/" var="img"/>
+ <c:url value="/resources/css/" var="css"/>
+ <c:url value="/resources/js/" var="js"/>
+ 
   <title>Checkout</title>
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-  <link rel="stylesheet" href="css/style2.css">
+  <link rel="stylesheet" href="${css}/style2.css">
   
 </head>
 
-
-
-<nav class="navbar navbar-default" style="background-color:#1E90FF" "padding:10em;">
-  <div class="container-fluid">
-    <div class="navbar-header" style="padding:1em">
-      <a class="navbar-brand"></a>
-    
-    <div class="nav navbar-nav">
-      <a class="active1"><a style="color:white" "align:center">Grocery Offer Zone Top Deals & Discounts</a>
-    </div>
-	</div>
-  </div>
-</nav>
-
-<br>
-<br>
-
 <body>
-<table border=1px solid pink>
+<%@ include file="header.jsp" %>
+<br>
+<table border=1px solid grey>
 <tr>
 <th>ProductId</th>
 <th>ProductImage</th>
@@ -40,19 +30,23 @@
 <th>Actions</th>
 </tr>
 
+<c1:forEach items="${cartItem}" var="prod">
 <tr>
-<td>${prod.getProductId()}</td>
-<td>${prod.getProductImage()}</td>
-<td>${prod.getProductPrice()}</td>
-<td>${prod.getCategory()}</td>
+<td>${prod.getProduct().getProductId()}</td>
+<td>${prod.getProduct().getProductName()}</td>
+<td>${prod.getProduct().getProductPrice()}</td>
+<td>${prod.getProduct().getCategory().getCatName()}</td>
 <td>
-<a href="<c:url value='/removeproduct/${prod.getProductId()}'/>">REMOVE</a> /<a href="<c:url value='/buyProduct/${prod.getProductId()}'/>">BUY</a>
+<a href="<c:url value='/remove/${prod.getCtItemsId()}'/>">REMOVE</a> /<a href="<c:url value='/Buy/${prod.getProduct().getProductId()}/${prod.getCtItemsId()}'/>">BUY</a>
 </td>
 </tr>
+</c1:forEach>
 </table>
 
-<button class="btn submits sign-up" style="width:60px" "align:center" > Remove All</button>
-  <button class="btn submits sign-up" style="width:40px" "align:center" "float:right" "margin-right:-150px">Buy</button>
-<script  src="js/index.js"></script>
+<div class="submits">
+<button class="btn submits sign-up" style="color:#ff8080;"><a href="<c:url value='/Removeall'/>">Remove All</a></button>
+  <button class="btn submits sign-up" style="color:#ff8080;"><a href="<c:url value="/Buyall"/>">Buy All</a></button>
+</div>
+
 </body>
-<</html>
+</html>

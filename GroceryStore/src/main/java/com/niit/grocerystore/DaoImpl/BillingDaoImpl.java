@@ -38,8 +38,8 @@ public class BillingDaoImpl implements BillingDao  {
 	}
 
 	@Override
-	public Billing getBilling(String billId) {
-		String s="from Billing where billId='"+billId+"'";
+	public Billing getBilling(String userId) {
+		String s="from Billing where userId='"+userId+"'";
 		Query q= sessionFactory.getCurrentSession().createQuery(s);
 		List<Billing> lbill= (List<Billing>)q.list();
 		if(lbill==null||lbill.isEmpty())

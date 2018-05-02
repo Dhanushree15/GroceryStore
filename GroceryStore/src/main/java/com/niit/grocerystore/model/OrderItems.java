@@ -1,5 +1,7 @@
 package com.niit.grocerystore.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,12 +24,19 @@ public class OrderItems {
 	@JoinColumn(name="ordId")
 	private Order order;
 	
+	public OrderItems()
+ 	{
+ 		this.orditemsId="ORDIT"+UUID.randomUUID().toString().substring(30).toUpperCase();
+ 	}
+	
 	public Order getOrder() {
 		return order;
 	}
 	public void setOrder(Order order) {
 		this.order = order;
 	}
+	
+
 	public String getOrditemsId() {
 		return orditemsId;
 	}

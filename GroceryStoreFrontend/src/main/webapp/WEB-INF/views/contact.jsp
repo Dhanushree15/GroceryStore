@@ -176,7 +176,7 @@ btn btn-default{
  <br>
     <form:input class="form-input" type="text" placeholder="Address" path="userAddress" required="required"/>
  <br>
-    <form:input class="form-input" type="text" placeholder="Phone Number" path="userPhnno" required="required"/>
+    <form:input class="form-input" type="text" placeholder="Phone Number" path="userPhnno" required="required" pattern="[789][0-9]{9}"/>
  <br>
     <form:input class="form-input" type="text" placeholder="E-mail ID" path="userEmailid" required="required"/>
  <br>
@@ -246,7 +246,7 @@ btn btn-default{
 	
 	<div class="form-group">
       <div class="col-sm-10">          
-        <input type="textarea" class="form-control" id="message-box" placeholder="Message">
+        <input type="textarea" class="form-control" id="message-box" placeholder="Message" rows="10" cols="30">
       </div>
     </div>
 	

@@ -45,11 +45,11 @@ top:0;
  <br>
 	<form:input class="form-input" type="text" placeholder="Country" path="billing.billCity" required="required"/>
  <br>
-    <form:input class="form-input" type="text" placeholder="Pincode" path="billing.billPincode" required="required"/>
+    <form:input class="form-input" type="text" placeholder="Pincode" path="billing.billPincode" required="required" pattern="[0-9]{6}"/>
  <br>
     <form:input class="form-input" type="text" placeholder="EmailID" path="billing.billEmailid"  required="required"/>
  <br>
-    <form:input class="form-input" type="text" placeholder="Mobileno" path="billing.billPhnno" required="required"/>
+    <form:input class="form-input" type="text" placeholder="Mobileno" path="billing.billPhnno" required="required" pattern="[789][0-9]{9}"/>
  <br>
      
 </div>
@@ -78,7 +78,7 @@ top:0;
  <br>
 	<form:input class="form-input" type="text" placeholder="City" path="shipCity" required="required"/>
  <br>
-    <form:input class="form-input" type="text" placeholder="Mobileno" path="shipMobno"  required="required"/>
+    <form:input class="form-input" type="text" placeholder="Mobileno" path="shipMobno"  required="required" pattern="[789][0-9]{9}"/>
  <br>
 	<form:input class="form-input" type="text" placeholder="EmailID" path="shipEmailid" required="required"/>
  <br>

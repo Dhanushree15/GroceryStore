@@ -179,7 +179,7 @@ margin-right:30px;
  <br>
     <form:input class="form-input" type="text" placeholder="Address" path="userAddress" required="required"/>
  <br>
-    <form:input class="form-input" type="text" placeholder="Phone Number" path="userPhnno" required="required"/>
+    <form:input class="form-input" type="text" placeholder="Phone Number" path="userPhnno" required="required" pattern="[789][0-9]{9}"/>
  <br>
     <form:input class="form-input" type="text" placeholder="E-mail ID" path="userEmailid" required="required"/>
  <br>

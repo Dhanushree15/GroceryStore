@@ -35,7 +35,7 @@
       <br>
       <form:input class="form-input" type="text" placeholder="Supplier-Address"  path="supplierAddress" required="required"/>  
       <br>
-	  <form:input class="form-input" type="text" placeholder="Phone-no"  path="supplierPhnno" required="required"/>  
+	  <form:input class="form-input" type="text" placeholder="Phone-no"  path="supplierPhnno" required="required" pattern="[789][0-9]{9}"/>  
 	  <br>
 	  <form:input class="form-input" type="text" placeholder="E-mailId"  path="supplierEmailid" required="required"/>  
 	  <br>

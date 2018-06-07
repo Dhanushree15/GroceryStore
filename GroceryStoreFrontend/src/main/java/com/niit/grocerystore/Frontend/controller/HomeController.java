@@ -95,4 +95,11 @@ public class HomeController {
 		return "contact";
 	}
 	
+	@RequestMapping("/rating")
+	public String rating()
+	{
+		return "rating";
+	}
+	
+	
 }

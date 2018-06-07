@@ -143,68 +143,76 @@ ul.nav navbar-nav{
 </div>
 
 		
+
+
+<c1:if test= "${pageContext.request.userPrincipal.name==null}">		
 		<!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     <!-- Modal content--> 
 	<div class="overlay">
-<form>
+	<c:url value="/addUser" var="sign"/>
+    <form:form action="${sign}" method="post" commandName="user">  
    <div class="con">
    <header class="head-form">
      <h2>SIGNUP</h2>   
    </header> 
-
    <div class="field-set">      
-    <input class="form-input" type="text" placeholder="FirstName" required>
+    <form:input class="form-input" type="text" placeholder="FirstName" path="userName" required="required"/>
  <br>
-	<input class="form-input" type="text" placeholder="LastName" required>
+	<form:input class="form-input" type="text" placeholder="LastName" path="userName" required="required"/>
  <br>
-	<input class="form-input" type="password" placeholder="Password"  required>
+	<form:input class="form-input" type="password" placeholder="Password" path="userPassword" required="required"/>
  <br>
-    <input class="form-input" type="text" placeholder="Address"  required>
+    <form:input class="form-input" type="text" placeholder="Houseno" path="userHouseno" required="required"/>
  <br>
-    <input class="form-input" type="text" placeholder="Phone Number"  required>
+    <form:input class="form-input" type="text" placeholder="Address" path="userAddress" required="required"/>
  <br>
-    <input class="form-input" type="text" placeholder="E-mail ID"  required>
+    <form:input class="form-input" type="text" placeholder="Pincode" path="userPincode" required="required" pattern="[0-9]{6}" />
+ <br>
+    <form:input class="form-input" type="text" placeholder="Phone Number" path="userPhnno" required="required" pattern="[789][0-9]{9}"/>
+ <br>
+    <form:input class="form-input" type="text" placeholder="E-mail ID" path="userEmailid" required="required"/>
  <br>
       
-    <button class="btn submits sign-up"> Submit </button>
-	<button class="btn submits sign-up">Cancel</button>
+    <button class="btn submits sign-up" type="submit"> Submit </button>
+	<button class="btn submits sign-up" type="reset">Cancel</button>
 </div>
 </div>
-</form>
+</form:form>
 </div>  
 <script  src="js/index.js">
 </script>
 </div>
 </div>
-  
+
 <div class="modal fade" id="myModal1" role="dialog">
     <div class="modal-dialog">
      <!-- Modal content-->
     <div class="overlay">
-<form>
+    <c:url value="/j_spring_security_check" var="login"/>
+<form:form action="${login}" method="post" > 
    <div class="con">
    <header class="head-form">
      <h2>LOGIN</h2>   
-   </header> 
+   </header>
 <br>
    <div class="field-set">      
-    <input class="form-input" type="text" placeholder="UserName" required>
+    <input class="form-input" type="text" placeholder="UserName" name="j_username" required="required"/>
  <br>
-	<input class="form-input" type="password" placeholder="Password"  required>
+	<input class="form-input" type="password" placeholder="Password" name="j_password" required="required"/>
  <br>
    <button class="btn submits sign-up"> Submit </button>
    <button class="btn submits sign-up">Cancel</button>
 </div>
 </div>
-</form>
+</form:form>
 </div>  
 <script  src="js/index.js">
 </script>
 </div>
 </div>
-</div>
+</c1:if>
 
 
 </body>
